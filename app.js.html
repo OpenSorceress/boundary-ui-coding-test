@@ -236,6 +236,7 @@
  * @link {http://marionettejs.com/}
  * @link {http://backbonejs.org/}
  */
+
 module.exports = App = function App() {};
 
 /**
@@ -245,7 +246,7 @@ App.prototype.start = function(){
 
     App.core = Marionette.Application.extend({
         setRootLayout: function () {
-            this.root = LayoutView;
+            this.root = new LayoutView();
         }
     });
 

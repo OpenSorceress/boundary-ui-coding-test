@@ -227,6 +227,7 @@ var App = require('./app');
  * @requires module:app
  * @type {App|exports|module.exports}
  */
+
 var TodoMVC = new App();
 
 var filterState = new Backbone.Model({
@@ -237,7 +238,9 @@ TodoMVC.reqres.setHandler('filterState', function () {
     return filterState;
 });
 
-TodoMVC.start();</pre>
+TodoMVC.on('before:start', function () {
+    TodoMVC.setRootLayout();
+});</pre>
 	</article>
 </section>
 
