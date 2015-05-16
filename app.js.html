@@ -236,7 +236,7 @@
  * @link {http://marionettejs.com/}
  * @link {http://backbonejs.org/}
  */
-module.exports = App = function App() {};
+var App = function App() {};
 
 /**
  * @desc application bootstrap functions
@@ -296,6 +296,8 @@ App.prototype.start = function(){
 
     App.core.start();
 };
+
+module.exports = App;
 </pre>
 	</article>
 </section>
