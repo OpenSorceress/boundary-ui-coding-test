@@ -233,7 +233,7 @@ module.exports = App = function App() {};
 
 App.prototype.start = function(){
 
-    App.core = Backbone.Marionette.Application.extend({
+    App.core = Marionette.Application.extend({
         setRootLayout: function () {
             this.root = new LayoutView();
         }
@@ -243,7 +243,7 @@ App.prototype.start = function(){
         filter: 'all'
     });
 
-    App.core.reqres.setHandler('filterState', function () {
+    App.reqres.setHandler('filterState', function () {
         return filterState;
     });
 
