@@ -215,11 +215,14 @@
 <section>
 	<article>
 		<pre
-			class="sunlight-highlight-javascript linenums">var $ = require('jquery'),
-    _ = require('underscore'),
-    Backbone = require('backbone'),
-    Marionette = require('backbone.marionette'),
-    Controller = require('./controller'),
+			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette');
+var Backbone = require("backbone");
+var $ = require('jquery');
+var _ = require('underscore');
+Backbone.$ = $;
+Marionette.$ = $;
+
+var Controller = require('./controller'),
     Router = require('./router'),
     LayoutView = require('./views/layout'),
     TodosCollection = require('./collections/todos');

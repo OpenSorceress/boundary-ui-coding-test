@@ -215,11 +215,14 @@
 <section>
 	<article>
 		<pre
-			class="sunlight-highlight-javascript linenums">var $ = require('jquery'),
-    _ = require('underscore'),
-    Backbone = require('backbone'),
-    LocalStorage = require('backbone.localstorage'),
-    TodoModel = require('../models/todo');
+			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette');
+var Backbone = require("backbone");
+var $ = require('jquery');
+var _ = require('underscore');
+Backbone.$ = $;
+Marionette.$ = $;
+var LocalStorage = require('backbone.localstorage');
+var TodoModel = require('../models/todo');
 
 /**
  * TodoListCollection
