@@ -1,21 +1,41 @@
 var Marionette = require('backbone.marionette');
+var Backbone = require("backbone");
+var $ = require('jquery');
+var _ = require('underscore');
+Backbone.$ = $;
+Marionette.$ = $;
 
-module.exports = HeaderView = Marionette.ItemView.extend({
+/**
+ * @version 1.0.0
+ * @description Header View
+ * @module views/header
+ * @link {http://marionettejs.com/}
+ */
+module.exports = Marionette.ItemView.extend({
     template: '#template-header',
 
-    // UI bindings create cached attributes that
-    // point to jQuery selected objects
+    /**
+     * @description UI bindings create cached attributes that
+     * point to jQuery selected objects
+     */
     ui: {
         input: '#new-todo'
     },
 
+    /** keypress and keyup events */
     events: {
         'keypress @ui.input': 'onInputKeypress',
         'keyup @ui.input': 'onInputKeyup'
     },
 
-    // According to the spec
-    // If escape is pressed during the edit, the edit state should be left and any changes be discarded.
+    /**
+     * @description According to the spec
+     * If escape is pressed during the edit, the edit
+     * state should be left and any changes be discarded.
+     * @func onInputKeyup
+     * @desc key up event handler
+     * @param e - event
+     */
     onInputKeyup: function (e) {
         var ESC_KEY = 27;
 
@@ -24,6 +44,11 @@ module.exports = HeaderView = Marionette.ItemView.extend({
         }
     },
 
+    /**
+     * @func onInputKeypress
+     * @desc key press event handler
+     * @param e - event
+     */
     onInputKeypress: function (e) {
         var ENTER_KEY = 13;
         var todoText = this.ui.input.val().trim();

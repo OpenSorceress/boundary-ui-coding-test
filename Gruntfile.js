@@ -6,62 +6,27 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        bower: {
-            install: {
-                options: {
-                    targetDir: 'src/requires',
-                    layout: 'byComponent'
-                }
-            }
-        },
-
         clean: {
-            build: ['build'],
+            build: ['build', 'doc'],
             dev: {
                 src: ['build/app.js', 'build/<%= pkg.name %>.css', 'build/<%= pkg.name %>.js']
             },
             prod: ['dist']
         },
 
-        browserify: {
-            vendor: {
-                src: ['src/requires/**/*.js'],
-                dest: 'build/vendor.js',
+        mkdir: {
+            all: {
                 options: {
-                    shim: {
-                        jquery: {
-                            path: 'src/requires/jquery/js/jquery.js',
-                            exports: '$'
-                        },
-                        underscore: {
-                            path: 'src/requires/underscore/js/underscore.js',
-                            exports: '_'
-                        },
-                        backbone: {
-                            path: 'src/requires/backbone/js/backbone.js',
-                            exports: 'Backbone',
-                            depends: {
-                                underscore: 'underscore'
-                            }
-                        },
-                        'backbone.marionette': {
-                            path: 'src/requires/backbone.marionette/js/backbone.marionette.js',
-                            exports: 'Marionette',
-                            depends: {
-                                jquery: '$',
-                                backbone: 'Backbone',
-                                underscore: '_'
-                            }
-                        }
-                    }
+                    mode: 0777,
+                    create: ['doc', 'public', 'public/js', 'public/css']
                 }
-            },
+            }
+        },
+
+        browserify: {
             app: {
                 files: {
                     'build/app.js': ['src/main.js']
-                },
-                options: {
-                    external: ['jquery', 'underscore', 'backbone', 'backbone.marionette']
                 }
             },
             test: {
@@ -69,9 +34,6 @@ module.exports = function(grunt) {
                     'build/tests.js': [
                         'spec/**/*.test.js'
                     ]
-                },
-                options: {
-                    external: ['jquery', 'underscore', 'backbone', 'backbone.marionette']
                 }
             }
         },
@@ -87,7 +49,7 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
+            'build/<%= pkg.name %>.js': ['build/app.js']
         },
 
         copy: {
@@ -102,7 +64,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // CSS minification.
         cssmin: {
             minify: {
                 src: ['build/<%= pkg.name %>.css'],
@@ -110,7 +71,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // Javascript minification.
         uglify: {
             compile: {
                 options: {
@@ -124,10 +84,12 @@ module.exports = function(grunt) {
             }
         },
 
-        // for changes to the front-end code
         watch: {
+            options: {
+                livereload: true
+            },
             scripts: {
-                files: ['src/**/*.js'],
+                files: ['src/**/*.js', 'index.html'],
                 tasks: ['clean:dev', 'browserify:app', 'concat', 'copy:dev']
             },
             less: {
@@ -146,7 +108,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['watch:scripts', 'watch:less', 'watch:test'],
+                tasks: ['watch:scripts', 'watch:less', 'watch:html', 'watch:test'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -159,7 +121,6 @@ module.exports = function(grunt) {
             }
         },
 
-        // for front-end tdd
         karma: {
             options: {
                 configFile: 'karma.conf.js'
@@ -173,6 +134,24 @@ module.exports = function(grunt) {
             }
         },
 
+        jsdoc : {
+            dist : {
+                src: ['src/**/*.js', 'README.md'],
+                options: {
+                    destination: 'doc',
+                    template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+                    configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
+                }
+            }
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'doc'
+            },
+            src: ['**']
+        },
+
         jshint: {
             options: {
                 ignores: ['src/requires/**/*.js']
@@ -183,13 +162,25 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('init:dev', ['clean', 'bower', 'browserify:vendor']);
-
-    grunt.registerTask('build:dev', ['clean:dev', 'browserify:app', 'browserify:test', 'jshint:dev', 'less:transpile', 'concat', 'copy:dev']);
-    grunt.registerTask('build:prod', ['clean:prod', 'browserify:vendor', 'browserify:app', 'jshint:all', 'less:transpile', 'concat', 'cssmin', 'uglify', 'copy:prod']);
+    grunt.registerTask('build:dev', ['clean', 'mkdir:all', 'browserify:app', 'jshint:dev', 'less:transpile', 'concat', 'copy:dev', 'jsdoc', 'gh-pages']);
+    grunt.registerTask('build:prod', ['clean:prod', 'browserify:app', 'jshint:all', 'less:transpile', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('test:src', ['karma:test']);
     grunt.registerTask('tdd', ['karma:watcher:start', 'concurrent:test']);
 
     grunt.registerTask('test', ['test:src']);
+
+    grunt.task.registerTask('watch', 'A sample task that logs stuff.', function(arg1, arg2) {
+        if (arguments.length === 0) {
+            grunt.log.writeln(this.name + ", no args");
+        } else {
+            grunt.log.writeln(this.name + ", " + arg1 + " " + arg2);
+        }
+    });
+
+    grunt.registerTask('watch', ['watch:scripts', 'watch:less']);
+
+    grunt.event.on('watch', function(action, filepath, target) {
+        grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+    });
 };

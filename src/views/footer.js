@@ -1,10 +1,28 @@
 var Marionette = require('backbone.marionette');
+var Backbone = require("backbone");
+var $ = require('jquery');
+var _ = require('underscore');
+Backbone.$ = $;
+Marionette.$ = $;
 
-module.exports = FooterView = Marionette.ItemView.extend({
+var App = require('../app');
+
+/**
+* @version 1.0.0
+* @description Footer View - requires the module {@link module:app}
+* @module views/footer
+* @requires module:app
+* @link {http://marionettejs.com/}
+*/
+module.exports = Marionette.ItemView.extend({
+
+    /** template */
     template: '#template-footer',
 
-    // UI bindings create cached attributes that
-    // point to jQuery selected objects
+    /**
+    * @desc UI bindings create cached attributes that
+    * point to jQuery selected objects
+    */
     ui: {
         filters: '#filters a',
         completed: '.completed a',
@@ -14,24 +32,34 @@ module.exports = FooterView = Marionette.ItemView.extend({
         clear: '#clear-completed'
     },
 
+    /** events */
     events: {
         'click @ui.clear': 'onClearClick'
     },
 
+    /** collection events */
     collectionEvents: {
         all: 'render'
     },
 
+    /** template helpers */
     templateHelpers: {
         activeCountLabel: function () {
             return (this.activeCount === 1 ? 'item' : 'items') + ' left';
         }
     },
 
+    /**
+     * @func initialize
+     */
     initialize: function () {
-        this.listenTo(window.App.request('filterState'), 'change:filter', this.updateFilterSelection, this);
+        this.listenTo(App.request('filterState'), 'change:filter', this.updateFilterSelection, this);
     },
 
+    /**
+     * @func serializeData
+     * @returns {{activeCount: (*|number), totalCount: *, completedCount: number}}
+     */
     serializeData: function () {
         var active = this.collection.getActive().length;
         var total = this.collection.length;
@@ -43,6 +71,9 @@ module.exports = FooterView = Marionette.ItemView.extend({
         };
     },
 
+    /**
+     * @func onRender
+     */
     onRender: function () {
         this.$el.parent().toggle(this.collection.length > 0);
         this.updateFilterSelection();
@@ -50,10 +81,13 @@ module.exports = FooterView = Marionette.ItemView.extend({
 
     updateFilterSelection: function () {
         this.ui.filters.removeClass('selected');
-        this.ui[window.App.request('filterState').get('filter')]
+        this.ui[App.request('filterState').get('filter')]
             .addClass('selected');
     },
 
+    /**
+     * @func onClearClick
+     */
     onClearClick: function () {
         var completed = this.collection.getCompleted();
         completed.forEach(function (todo) {

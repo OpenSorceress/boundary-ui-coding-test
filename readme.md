@@ -26,6 +26,20 @@
  
 * Add some unit tests using grunt and any test framework you like.
 
+### Build
+
+For development:
+
+    $ grunt init:dev && grunt build:dev  
+
+For production:
+
+    $ grunt build:prod
+    
+With watch:
+    
+    $ grunt watch
+
 ### Front-end Tests/TDD:
 
 Requires PhantomJS to be installed globally:
@@ -42,6 +56,27 @@ To run tests once:
     
 ### Added
 
+I apologize but I changed the application folder structure from the original Backbone TodoMVC Marionette app.
+
+This was to help me get reacquainted with Backbone, write better tests and build
+an asset pipeline with browserify.
+
+It's just easier to see what's going on when the views, controller, route, model, collection and app are in separate files.
+
+The last time I touched Backbone Marionette was three years ago.
+
+Since I had never used browserify with Backbone let alone Backbone Marionette before I used information from this [blog article](http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/) for reference.
+
+Because the code is considerably changed and I didn't want it to be to painful to understand, I tried to make things easier
+by using jsdoc and creating some API documentation.  Although the original TodoMVC code is still in the commit history
+of this repo I doubt that's going to be much help. :)
+
+### API Documentation
+
+[Documentation can be found here](http://html5devgal.com/boundary-ui-coding-test/index.html)
+
+The following has been added:
+
   * Browserify
   * Jasmine tests
   * Mocha test runner
@@ -55,5 +90,10 @@ To run tests once:
   * Watchers
   * Concatenation/Copy
   * Refactored using CommonJS module pattern
+  * jsdoc
   * ES6 with babeljs
+  
+### View App
+
+Open `index.html` file in browser.
 

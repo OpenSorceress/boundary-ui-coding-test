@@ -1,11 +1,34 @@
-var Marionette = require('backbone.marionette'),
-    Controller = require('./controller'),
+var Marionette = require('backbone.marionette');
+var Backbone = require("backbone");
+var $ = require('jquery');
+var _ = require('underscore');
+Backbone.$ = $;
+Marionette.$ = $;
+
+var Controller = require('./controller'),
     Router = require('./router'),
     LayoutView = require('./views/layout'),
     TodosCollection = require('./collections/todos');
 
-module.exports = App = function App() {};
+/**
+ * @version 1.0.0
+ * @description App - requires the modules {@link module:views/layout},
+ * {@link module:router}, {@link module:controller} and {@link module:collections/todos}
+ * @module app
+ * @desc application
+ * @type {Function}
+ * @requires module:controller
+ * @requires module:router
+ * @requires module:views/layout
+ * @requires module:collections/todos
+ * @link {http://marionettejs.com/}
+ * @link {http://backbonejs.org/}
+ */
+var App = function App() {};
 
+/**
+ * @desc application bootstrap functions
+ */
 App.prototype.start = function(){
 
     App.core = Marionette.Application.extend({
@@ -61,3 +84,5 @@ App.prototype.start = function(){
 
     App.core.start();
 };
+
+module.exports = App;
