@@ -235,12 +235,6 @@ App.prototype.start = function(){
 
     App.core = new Marionette.Application();
 
-    var RootLayout = Marionette.Application.extend({
-        setRootLayout: function () {
-            this.root = new LayoutView();
-        }
-    });
-
     var filterState = new Backbone.Model({
         filter: 'all'
     });
@@ -250,7 +244,7 @@ App.prototype.start = function(){
     });
 
     App.core.on('before:start', function () {
-        RootLayout.setRootLayout();
+        App.core.rootView = new LayoutView();
     });
 
     App.core.on("initialize:before", function (options) {
