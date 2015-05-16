@@ -25,3 +25,35 @@
 ## Optional:
  
 * Add some unit tests using grunt and any test framework you like.
+
+### Front-end Tests/TDD:
+
+Requires PhantomJS to be installed globally:
+
+    $ sudo npm install -g phantomjs
+
+To run tests in TDD watch mode:
+
+    $ grunt tdd
+
+To run tests once:
+
+    $ grunt test:client
+    
+### Added
+
+  * Browserify
+  * Jasmine tests
+  * Mocha test runner
+ * Grunt:
+  * Browserify
+  * jsHinting
+  * LESS
+  * Minification/Uglification
+  * Karma client testing/tdd
+  * Mocha node testing
+  * Watchers
+  * Concatenation/Copy
+  * Refactored using CommonJS module pattern
+  * ES6 with babeljs
+

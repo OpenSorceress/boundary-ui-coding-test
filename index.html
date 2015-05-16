@@ -2,17 +2,19 @@
 <html lang="en" data-framework="marionettejs">
 	<head>
 		<meta charset="utf-8">
-		<title>Marionette • TodoMVC</title>
-		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
-		<link rel="stylesheet" href="css/app.css">
+		<title>Boundary UI Coding Test Marionette • TodoMVC + Charts</title>
+		<link rel="stylesheet" type="text/css" href="public/css/boundary-ui-coding-test.css">
 	</head>
 	<body>
+
+		<!--Layout-->
 		<section id="todoapp">
 			<header id="header"></header>
 			<section id="main"></section>
 			<footer id="footer"></footer>
 		</section>
+
+		<!--Footer-->
 		<footer id="info">
 			<p>Double-click to edit a todo</p>
 			<p>
@@ -22,6 +24,8 @@
 			</p>
 			<p>See who else is using marionette at <a href="http://marionettejs.com/">marionettejs.com</a>.</p>
 		</footer>
+
+		<!--Footer Template-->
 		<script type="text/html" id="template-footer">
 			<span id="todo-count">
 				<strong><%= activeCount %></strong> <%= activeCountLabel() %>
@@ -39,10 +43,14 @@
 			</ul>
 			<button id="clear-completed" <% if (!completedCount) { %>class="hidden"<% } %>>Clear completed</button>
 		</script>
+
+		<!--Header Template-->
 		<script type="text/html" id="template-header">
 			<h1>todos</h1>
 			<input id="new-todo" placeholder="What needs to be done?" autofocus>
 		</script>
+
+		<!--TodoListItemView Template-->
 		<script type="text/html" id="template-todoItemView">
 			<div class="view">
 				<input class="toggle" type="checkbox" <% if (completed) { %>checked<% } %>>
@@ -51,32 +59,18 @@
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>
+
+		<!--TodoListCompositView Template-->
 		<script type="text/html" id="template-todoListCompositeView">
 			<input id="toggle-all" type="checkbox">
 			<label for="toggle-all">Mark all as complete</label>
 			<ul id="todo-list"></ul>
 		</script>
+
 		<!-- vendor libraries -->
 		<script src="node_modules/todomvc-common/base.js"></script>
-		<script src="node_modules/jquery/dist/jquery.js"></script>
-		<script src="node_modules/underscore/underscore.js"></script>
-		<script src="node_modules/backbone/backbone.js"></script>
-		<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
-		<script src="node_modules/backbone.marionette/lib/backbone.marionette.js"></script>
 		<!-- application -->
-		<script src="js/TodoMVC.js"></script>
-		<script src="js/TodoMVC.Todos.js"></script>
-		<script src="js/TodoMVC.Layout.js"></script>
-		<script src="js/TodoMVC.TodoList.Views.js"></script>
-		<script src="js/TodoMVC.TodoList.js"></script>
-		<script>
-			$(function () {
-				TodoMVC.on('start', function () {
-					Backbone.history.start();
-				});
-				// start the TodoMVC app (defined in js/TodoMVC.js)
-				TodoMVC.start();
-			});
-		</script>
+		<script type="text/javascript" src="public/js/boundary-ui-coding-test.js"></script>
+
 	</body>
 </html>
