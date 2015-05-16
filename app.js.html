@@ -40,10 +40,6 @@
 						</li>
 						
 						<li>
-							<a href="module-main.html">main</a>
-						</li>
-						
-						<li>
 							<a href="todo.html">models/todo</a>
 						</li>
 						
@@ -83,10 +79,6 @@
 						
 						<li>
 							<a href="global.html#_isCompleted">_isCompleted</a>
-						</li>
-						
-						<li>
-							<a href="global.html#App">App</a>
 						</li>
 						
 						<li>
@@ -240,7 +232,11 @@
 module.exports = App = function App() {};
 
 App.prototype.start = function(){
-    App.core = new Marionette.Application();
+    App.core = Marionette.Application.extend({
+        setRootLayout: function () {
+            this.root = new TodoMVC.Layout.Root();
+        }
+    });
 
     App.core.on("initialize:before", function (options) {
         App.core.vent.trigger('app:log', 'App: Initializing');
@@ -277,6 +273,22 @@ App.prototype.start = function(){
 
     App.core.start();
 };
+
+var TodoMVC = new App();
+
+var filterState = new Backbone.Model({
+    filter: 'all'
+});
+
+TodoMVC.reqres.setHandler('filterState', function () {
+    return filterState;
+});
+
+TodoMVC.on('before:start', function () {
+    TodoMVC.setRootLayout();
+});
+
+TodoMVC.start();
 </pre>
 	</article>
 </section>
