@@ -3,13 +3,19 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
 
+    var shims = require("./shims"),
+        sharedModules = Object.keys(shims).concat([
+            // place all modules you want in the lib build here
+            "nvd3"
+        ]);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         clean: {
             build: ['build', 'doc'],
             dev: {
-                src: ['build/app.js', 'build/<%= pkg.name %>.css', 'build/<%= pkg.name %>.js']
+                src: ['build/app.js', 'build/vendor.js', 'build/<%= pkg.name %>.css', 'build/<%= pkg.name %>.js']
             },
             prod: ['dist']
         },
@@ -24,9 +30,21 @@ module.exports = function(grunt) {
         },
 
         browserify: {
+            vendor: {
+                files: {
+                    'build/vendor.js': ["app/vendor/lib.js"]
+                },
+                options: {
+                    transform: ["browserify-shim"],
+                    require: sharedModules
+                }
+            },
             app: {
                 files: {
                     'build/app.js': ['src/main.js']
+                },
+                options: {
+                    external: sharedModules
                 }
             },
             test: {
@@ -49,7 +67,7 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            'build/<%= pkg.name %>.js': ['build/app.js']
+            'build/<%= pkg.name %>.js': ['build/vendor.js', 'build/app.js']
         },
 
         copy: {
@@ -162,7 +180,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build:dev', ['clean', 'mkdir:all', 'browserify:app', 'jshint:dev', 'less:transpile', 'concat', 'copy:dev', 'jsdoc', 'gh-pages']);
+    grunt.registerTask('build:dev', ['clean', 'mkdir:all', 'browserify:app', 'browserify:vendor', 'jshint:dev', 'less:transpile', 'concat', 'copy:dev', 'jsdoc', 'gh-pages']);
     grunt.registerTask('build:prod', ['clean:prod', 'browserify:app', 'jshint:all', 'less:transpile', 'concat', 'cssmin', 'uglify', 'copy:prod']);
 
     grunt.registerTask('test:src', ['karma:test']);

@@ -1,11 +1,6 @@
-var Marionette = require('backbone.marionette');
-var Backbone = require("backbone");
-var $ = require('jquery');
-var _ = require('underscore');
-Backbone.$ = $;
-Marionette.$ = $;
-var LocalStorage = require('backbone.localstorage');
-var TodoModel = require('../models/todo');
+var Backbone = require('backbone'),
+    LocalStorage = require('localstorage'),
+    TodoModel = require('../models/todo');
 
 /**
  * TodoListCollection

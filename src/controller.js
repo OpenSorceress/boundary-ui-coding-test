@@ -1,11 +1,5 @@
-var Marionette = require('backbone.marionette');
-var Backbone = require("backbone");
-var $ = require('jquery');
-var     _ = require('underscore');
-Backbone.$ = $;
-Marionette.$ = $;
-
-var App = require('./app'),
+var Marionette = require('marionette'),
+    App = require('./app'),
     HeaderView = require('./views/header'),
     FooterView = require('./views/footer'),
     ListView = require('./views/list');

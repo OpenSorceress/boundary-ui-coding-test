@@ -1,11 +1,6 @@
-var Marionette = require('backbone.marionette');
-var Backbone = require("backbone");
-var $ = require('jquery');
-var _ = require('underscore');
-Backbone.$ = $;
-Marionette.$ = $;
-
-var Controller = require('./controller'),
+var Marionette = require('marionette'),
+    Backbone = require('backbone'),
+    Controller = require('./controller'),
     Router = require('./router'),
     LayoutView = require('./views/layout'),
     TodosCollection = require('./collections/todos');

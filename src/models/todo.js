@@ -1,9 +1,4 @@
-var Marionette = require('backbone.marionette');
-var Backbone = require("backbone");
-var $ = require('jquery');
-var _ = require('underscore');
-Backbone.$ = $;
-Marionette.$ = $;
+var Backbone = require('backbone');
 
 /**
 * @version 1.0.0
