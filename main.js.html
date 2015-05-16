@@ -220,6 +220,12 @@
 /** @global */
 var App = require('./app');
 
+App.core.setRootLayout({
+    root : new LayoutView()
+});
+
+var TodoMVC = new App();
+
 /**
  * TodoMVC App
  * @desc Starts App requires the module {@link module:app}
@@ -227,8 +233,6 @@ var App = require('./app');
  * @requires module:app
  * @type {App|exports|module.exports}
  */
-
-var TodoMVC = new App();
 
 var filterState = new Backbone.Model({
     filter: 'all'
@@ -240,7 +244,9 @@ TodoMVC.reqres.setHandler('filterState', function () {
 
 TodoMVC.on('before:start', function () {
     TodoMVC.setRootLayout();
-});</pre>
+});
+
+TodoMVC.start();</pre>
 	</article>
 </section>
 
