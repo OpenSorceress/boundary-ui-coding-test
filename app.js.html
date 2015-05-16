@@ -233,10 +233,22 @@ module.exports = App = function App() {};
 
 App.prototype.start = function(){
 
-    App.core = Marionette.Application.extend({
+    App.core = Backbone.Marionette.Application.extend({
         setRootLayout: function () {
             this.root = new LayoutView();
         }
+    });
+
+    var filterState = new Backbone.Model({
+        filter: 'all'
+    });
+
+    App.core.reqres.setHandler('filterState', function () {
+        return filterState;
+    });
+
+    App.core.on('before:start', function () {
+        App.core.setRootLayout();
     });
 
     App.core.on("initialize:before", function (options) {
@@ -274,22 +286,6 @@ App.prototype.start = function(){
 
     App.core.start();
 };
-
-var TodoMVC = new App();
-
-var filterState = new Backbone.Model({
-    filter: 'all'
-});
-
-TodoMVC.reqres.setHandler('filterState', function () {
-    return filterState;
-});
-
-TodoMVC.on('before:start', function () {
-    TodoMVC.setRootLayout();
-});
-
-TodoMVC.start();
 </pre>
 	</article>
 </section>
