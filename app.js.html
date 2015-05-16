@@ -233,7 +233,9 @@ module.exports = App = function App() {};
 
 App.prototype.start = function(){
 
-    App.core = Marionette.Application.extend({
+    App.core = new Marionette.Application();
+
+    var RootLayout = Marionette.Application.extend({
         setRootLayout: function () {
             this.root = new LayoutView();
         }
@@ -243,12 +245,12 @@ App.prototype.start = function(){
         filter: 'all'
     });
 
-    App.reqres.setHandler('filterState', function () {
+    App.core.reqres.setHandler('filterState', function () {
         return filterState;
     });
 
     App.core.on('before:start', function () {
-        App.core.setRootLayout();
+        RootLayout.setRootLayout();
     });
 
     App.core.on("initialize:before", function (options) {
