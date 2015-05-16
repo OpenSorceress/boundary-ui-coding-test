@@ -227,6 +227,14 @@ var App = require('./app');
  */
 var TodoMVC = new App();
 
+var filterState = new Backbone.Model({
+    filter: 'all'
+});
+
+TodoMVC.reqres.setHandler('filterState', function () {
+    return filterState;
+});
+
 TodoMVC.start();</pre>
 	</article>
 </section>

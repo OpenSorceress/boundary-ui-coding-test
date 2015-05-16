@@ -249,14 +249,6 @@ App.prototype.start = function(){
         }
     });
 
-    var filterState = new Backbone.Model({
-        filter: 'all'
-    });
-
-    App.core.reqres.setHandler('filterState', function () {
-        return filterState;
-    });
-
     App.core.on("initialize:before", function (options) {
         App.core.vent.trigger('app:log', 'App: Initializing');
 
