@@ -215,16 +215,17 @@
 <section>
 	<article>
 		<pre
-			class="sunlight-highlight-javascript linenums">var Backbone = require('backbone');
+			class="sunlight-highlight-javascript linenums">var Backbone = require('backbone'),
+    LayoutView = require('./views/layout');
 
 /** @global */
 var App = require('./app');
 
-App.core.setRootLayout({
-    root : new LayoutView()
+App.core.extend({
+    setRootLayout: function () {
+        this.root = new LayoutView();
+    }
 });
-
-var TodoMVC = new App();
 
 /**
  * TodoMVC App
@@ -238,15 +239,15 @@ var filterState = new Backbone.Model({
     filter: 'all'
 });
 
-TodoMVC.reqres.setHandler('filterState', function () {
+App.core.reqres.setHandler('filterState', function () {
     return filterState;
 });
 
-TodoMVC.on('before:start', function () {
-    TodoMVC.setRootLayout();
+App.core.on('before:start', function () {
+    App.core.setRootLayout();
 });
 
-TodoMVC.start();</pre>
+App.core.start();</pre>
 	</article>
 </section>
 

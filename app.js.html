@@ -258,10 +258,6 @@ App.prototype.start = function(){
         });
     });
 
-    App.core.on('before:start', function () {
-        App.core.setRootLayout();
-    });
-
     App.core.vent.bind('app:start', function(options){
         App.core.vent.trigger('app:log', 'App: Starting');
         if (Backbone.history) {
