@@ -40,11 +40,15 @@
 						</li>
 						
 						<li>
+							<a href="module-main.html">main</a>
+						</li>
+						
+						<li>
 							<a href="todo_.html">models/todo</a>
 						</li>
 						
 						<li>
-							<a href="module-Router.html">Router</a>
+							<a href="module-router.html">router</a>
 						</li>
 						
 						<li>
@@ -60,11 +64,137 @@
 						</li>
 						
 						<li>
-							<a href="layout.html">views/layout</a>
+							<a href="list.html">views/list</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="global.html#_isCompleted">_isCompleted</a>
 						</li>
 						
 						<li>
-							<a href="list.html">views/list</a>
+							<a href="global.html#App">App</a>
+						</li>
+						
+						<li>
+							<a href="global.html#className">className</a>
+						</li>
+						
+						<li>
+							<a href="global.html#deleteModel">deleteModel</a>
+						</li>
+						
+						<li>
+							<a href="global.html#el">el</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filter">filter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filterItems">filterItems</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getActive">getActive</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getCompleted">getCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#initialize">initialize</a>
+						</li>
+						
+						<li>
+							<a href="global.html#isCompleted">isCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#matchesFilter">matchesFilter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onClearClick">onClearClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditClick">onEditClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditFocusout">onEditFocusout</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditKeypress">onEditKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeypress">onInputKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeyup">onInputKeyup</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onRender">onRender</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onToggleAllClick">onToggleAllClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#reduceCompleted">reduceCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#regions">regions</a>
+						</li>
+						
+						<li>
+							<a href="global.html#serializeData">serializeData</a>
+						</li>
+						
+						<li>
+							<a href="global.html#setCheckAllState">setCheckAllState</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showFooter">showFooter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showHeader">showHeader</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showTodoList">showTodoList</a>
+						</li>
+						
+						<li>
+							<a href="global.html#start">start</a>
+						</li>
+						
+						<li>
+							<a href="global.html#toggle">toggle</a>
+						</li>
+						
+						<li>
+							<a href="global.html#updateHiddenElements">updateHiddenElements</a>
 						</li>
 						
 
@@ -89,42 +219,79 @@
 <section>
 	<article>
 		<pre
-			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette');
+			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette'),
+    App = require('../app'),
+    ItemView = require('./item');
 
 /**
  * @version 1.0.0
- * @description Item List View - Controls the rendering of the list of items, including the
- * filtering of activs vs completed items for display.
+ * @description Item List View - Controls the rendering of the items, including the
+ * filtering of active vs completed items for display.
+ * Requires the modules {@link module:app} and {@link module:module:views/item}.
  * @module views/list
+ * @requires module:app
+ * @requires module:views/item
+ * @requires module:backbone.marionette
+ * @link {http://marionettejs.com/}
  */
 module.exports = ListView = Marionette.CompositeView.extend({
+
+    /** template */
     template: '#template-todoListCompositeView',
-    childView: Views.ItemView,
+
+    /** child view */
+    childView: ItemView,
+
+    /** child view container */
     childViewContainer: '#todo-list',
 
+    /**
+     * @description UI bindings create cached attributes that
+     * point to jQuery selected objects
+     */
     ui: {
         toggle: '#toggle-all'
     },
 
+    /** click events */
     events: {
         'click @ui.toggle': 'onToggleAllClick'
     },
 
+    /** collection events */
     collectionEvents: {
         'change:completed': 'render',
         all: 'setCheckAllState'
     },
 
+    /**
+     * @func initialize
+     */
     initialize: function () {
         this.listenTo(App.request('filterState'), 'change:filter', this.render, this);
     },
 
+    /**
+     * @func filter
+     * @param child
+     * @returns {*}
+     */
     filter: function (child) {
         var filteredOn = App.request('filterState').get('filter');
         return child.matchesFilter(filteredOn);
     },
 
+    /**
+     * @func setCheckAllState
+     */
     setCheckAllState: function () {
+
+        /**
+         * @func reduceCompleted
+         * @param left
+         * @param right
+         * @returns {*}
+         */
         function reduceCompleted(left, right) {
             return left && right.get('completed');
         }
@@ -134,6 +301,11 @@ module.exports = ListView = Marionette.CompositeView.extend({
         this.$el.parent().toggle(!!this.collection.length);
     },
 
+    /**
+     * @desc toggle all click event handler
+     * @func onToggleAllClick
+     * @param e - event
+     */
     onToggleAllClick: function (e) {
         var isChecked = e.currentTarget.checked;
 

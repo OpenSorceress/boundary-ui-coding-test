@@ -40,11 +40,15 @@
 						</li>
 						
 						<li>
+							<a href="module-main.html">main</a>
+						</li>
+						
+						<li>
 							<a href="todo_.html">models/todo</a>
 						</li>
 						
 						<li>
-							<a href="module-Router.html">Router</a>
+							<a href="module-router.html">router</a>
 						</li>
 						
 						<li>
@@ -60,11 +64,137 @@
 						</li>
 						
 						<li>
-							<a href="layout.html">views/layout</a>
+							<a href="list.html">views/list</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="global.html#_isCompleted">_isCompleted</a>
 						</li>
 						
 						<li>
-							<a href="list.html">views/list</a>
+							<a href="global.html#App">App</a>
+						</li>
+						
+						<li>
+							<a href="global.html#className">className</a>
+						</li>
+						
+						<li>
+							<a href="global.html#deleteModel">deleteModel</a>
+						</li>
+						
+						<li>
+							<a href="global.html#el">el</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filter">filter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filterItems">filterItems</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getActive">getActive</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getCompleted">getCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#initialize">initialize</a>
+						</li>
+						
+						<li>
+							<a href="global.html#isCompleted">isCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#matchesFilter">matchesFilter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onClearClick">onClearClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditClick">onEditClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditFocusout">onEditFocusout</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditKeypress">onEditKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeypress">onInputKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeyup">onInputKeyup</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onRender">onRender</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onToggleAllClick">onToggleAllClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#reduceCompleted">reduceCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#regions">regions</a>
+						</li>
+						
+						<li>
+							<a href="global.html#serializeData">serializeData</a>
+						</li>
+						
+						<li>
+							<a href="global.html#setCheckAllState">setCheckAllState</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showFooter">showFooter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showHeader">showHeader</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showTodoList">showTodoList</a>
+						</li>
+						
+						<li>
+							<a href="global.html#start">start</a>
+						</li>
+						
+						<li>
+							<a href="global.html#toggle">toggle</a>
+						</li>
+						
+						<li>
+							<a href="global.html#updateHiddenElements">updateHiddenElements</a>
 						</li>
 						
 
@@ -100,7 +230,8 @@
 
     
         
-            <div class="description"><p>Controller</p></div>
+            <div class="description"><p>Controller - requires the modules <a href="module-app.html">module:app</a>, <a href="header.html">module:views/header</a>,
+<a href="footer.html">module:views/footer</a> and <a href="list.html">module:views/list</a></p></div>
         
 
         
@@ -138,7 +269,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-6">line 6</a>
+				 <a href="controller.js.html#sunlight-1-line-7">line 7</a>
 			</li>
 		</ul>
 	</dd>
@@ -161,562 +292,27 @@
     
 
     
+        <h3 class="subsection-title">Requires</h3>
 
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="filterItems"><span class="type-signature">&lt;inner> </span>filterItems<span class="signature">(filter)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Set the filter to show complete or all items</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
+        <ul>
+            <li>module:backbone.marionette</li>
         
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-69">line 69</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
+            <li><a href="module-app.html">module:app</a></li>
         
-            
-<dt>
-    <h4 class="name" id="showFooter"><span class="type-signature">&lt;inner> </span>showFooter<span class="signature">(todoList)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
+            <li><a href="header.html">module:views/header</a></li>
         
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>todoList</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-48">line 48</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
+            <li><a href="footer.html">module:views/footer</a></li>
         
-            
-<dt>
-    <h4 class="name" id="showHeader"><span class="type-signature">&lt;inner> </span>showHeader<span class="signature">(todoList)</span><span class="type-signature"></span></h4>
+            <li><a href="list.html">module:views/list</a></li>
+        </ul>
     
-    
-</dt>
-<dd>
-    
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>todoList</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-37">line 37</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="showTodoList"><span class="type-signature">&lt;inner> </span>showTodoList<span class="signature">(todoList)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>todoList</code></td>
-            
 
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-59">line 59</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="start"><span class="type-signature">&lt;inner> </span>start<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>Start the app by showing the appropriate views
-and fetching the list of todo items, if there are any</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="controller.js.html">controller.js</a>,
-				 <a href="controller.js.html#sunlight-1-line-21">line 21</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
     
-    
 
     
 
-    
-    
-    
-    
-    
-    
     
-</dd>
 
-        </dl>
     
 
     

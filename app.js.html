@@ -40,11 +40,15 @@
 						</li>
 						
 						<li>
+							<a href="module-main.html">main</a>
+						</li>
+						
+						<li>
 							<a href="todo_.html">models/todo</a>
 						</li>
 						
 						<li>
-							<a href="module-Router.html">Router</a>
+							<a href="module-router.html">router</a>
 						</li>
 						
 						<li>
@@ -60,11 +64,137 @@
 						</li>
 						
 						<li>
-							<a href="layout.html">views/layout</a>
+							<a href="list.html">views/list</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="global.html#_isCompleted">_isCompleted</a>
 						</li>
 						
 						<li>
-							<a href="list.html">views/list</a>
+							<a href="global.html#App">App</a>
+						</li>
+						
+						<li>
+							<a href="global.html#className">className</a>
+						</li>
+						
+						<li>
+							<a href="global.html#deleteModel">deleteModel</a>
+						</li>
+						
+						<li>
+							<a href="global.html#el">el</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filter">filter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filterItems">filterItems</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getActive">getActive</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getCompleted">getCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#initialize">initialize</a>
+						</li>
+						
+						<li>
+							<a href="global.html#isCompleted">isCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#matchesFilter">matchesFilter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onClearClick">onClearClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditClick">onEditClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditFocusout">onEditFocusout</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditKeypress">onEditKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeypress">onInputKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeyup">onInputKeyup</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onRender">onRender</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onToggleAllClick">onToggleAllClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#reduceCompleted">reduceCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#regions">regions</a>
+						</li>
+						
+						<li>
+							<a href="global.html#serializeData">serializeData</a>
+						</li>
+						
+						<li>
+							<a href="global.html#setCheckAllState">setCheckAllState</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showFooter">showFooter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showHeader">showHeader</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showTodoList">showTodoList</a>
+						</li>
+						
+						<li>
+							<a href="global.html#start">start</a>
+						</li>
+						
+						<li>
+							<a href="global.html#toggle">toggle</a>
+						</li>
+						
+						<li>
+							<a href="global.html#updateHiddenElements">updateHiddenElements</a>
 						</li>
 						
 
@@ -96,9 +226,18 @@
     TodosCollection = require('./collections/todos');
 
 /**
- * @desc application
+ * @version 1.0.0
+ * @description App - requires the modules {@link module:views/layout},
+ * {@link module:router}, {@link module:controller} and {@link module:collections/todos}
  * @module app
+ * @desc application
  * @type {Function}
+ * @requires module:controller
+ * @requires module:router
+ * @requires module:views/layout
+ * @requires module:collections/todos
+ * @requires module:backbone.marionette
+ * @link {http://marionettejs.com/}
  */
 module.exports = App = function App() {};
 

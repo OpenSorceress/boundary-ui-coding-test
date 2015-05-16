@@ -40,11 +40,15 @@
 						</li>
 						
 						<li>
+							<a href="module-main.html">main</a>
+						</li>
+						
+						<li>
 							<a href="todo_.html">models/todo</a>
 						</li>
 						
 						<li>
-							<a href="module-Router.html">Router</a>
+							<a href="module-router.html">router</a>
 						</li>
 						
 						<li>
@@ -60,11 +64,137 @@
 						</li>
 						
 						<li>
-							<a href="layout.html">views/layout</a>
+							<a href="list.html">views/list</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="global.html#_isCompleted">_isCompleted</a>
 						</li>
 						
 						<li>
-							<a href="list.html">views/list</a>
+							<a href="global.html#App">App</a>
+						</li>
+						
+						<li>
+							<a href="global.html#className">className</a>
+						</li>
+						
+						<li>
+							<a href="global.html#deleteModel">deleteModel</a>
+						</li>
+						
+						<li>
+							<a href="global.html#el">el</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filter">filter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#filterItems">filterItems</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getActive">getActive</a>
+						</li>
+						
+						<li>
+							<a href="global.html#getCompleted">getCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#initialize">initialize</a>
+						</li>
+						
+						<li>
+							<a href="global.html#isCompleted">isCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#matchesFilter">matchesFilter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onClearClick">onClearClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditClick">onEditClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditFocusout">onEditFocusout</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onEditKeypress">onEditKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeypress">onInputKeypress</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onInputKeyup">onInputKeyup</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onRender">onRender</a>
+						</li>
+						
+						<li>
+							<a href="global.html#onToggleAllClick">onToggleAllClick</a>
+						</li>
+						
+						<li>
+							<a href="global.html#reduceCompleted">reduceCompleted</a>
+						</li>
+						
+						<li>
+							<a href="global.html#regions">regions</a>
+						</li>
+						
+						<li>
+							<a href="global.html#serializeData">serializeData</a>
+						</li>
+						
+						<li>
+							<a href="global.html#setCheckAllState">setCheckAllState</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showFooter">showFooter</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showHeader">showHeader</a>
+						</li>
+						
+						<li>
+							<a href="global.html#showTodoList">showTodoList</a>
+						</li>
+						
+						<li>
+							<a href="global.html#start">start</a>
+						</li>
+						
+						<li>
+							<a href="global.html#toggle">toggle</a>
+						</li>
+						
+						<li>
+							<a href="global.html#updateHiddenElements">updateHiddenElements</a>
 						</li>
 						
 
@@ -96,14 +226,29 @@
  * @description Item View - Display an individual todo item, and respond to changes
  * that are made to the item, including marking completed.
  * @module views/item
+ * @requires module:backbone.marionette
+ * @link {http://marionettejs.com/}
  */
 module.exports = ItemView = Marionette.ItemView.extend({
+
+    /** tag name */
     tagName: 'li',
+
+    /** template */
     template: '#template-todoItemView',
+
+    /**
+     * @func className
+     * @returns {string}
+     */
     className: function () {
         return this.model.get('completed') ? 'completed' : 'active';
     },
 
+    /**
+     * @description UI bindings create cached attributes that
+     * point to jQuery selected objects
+     */
     ui: {
         edit: '.edit',
         destroy: '.destroy',
@@ -111,6 +256,7 @@ module.exports = ItemView = Marionette.ItemView.extend({
         toggle: '.toggle'
     },
 
+    /** events */
     events: {
         'click @ui.destroy': 'deleteModel',
         'dblclick @ui.label': 'onEditClick',
@@ -119,24 +265,39 @@ module.exports = ItemView = Marionette.ItemView.extend({
         'click @ui.toggle': 'toggle'
     },
 
+    /** model events */
     modelEvents: {
         change: 'render'
     },
 
+    /**
+     * @func deleteModel
+     */
     deleteModel: function () {
         this.model.destroy();
     },
 
+    /**
+     * @func toggle
+     */
     toggle: function () {
         this.model.toggle().save();
     },
 
+    /**
+     * @desc edit click event handler
+     * @func onEditClick
+     */
     onEditClick: function () {
         this.$el.addClass('editing');
         this.ui.edit.focus();
         this.ui.edit.val(this.ui.edit.val());
     },
 
+    /**
+     * @desc edit focus out event handler
+     * @func onEditFocusout
+     */
     onEditFocusout: function () {
         var todoText = this.ui.edit.val().trim();
         if (todoText) {
@@ -147,6 +308,11 @@ module.exports = ItemView = Marionette.ItemView.extend({
         }
     },
 
+    /**
+     * @desc edit key press event handler
+     * @func onEditKeypress
+     * @param e - event
+     */
     onEditKeypress: function (e) {
         var ENTER_KEY = 13;
         var ESC_KEY = 27;
