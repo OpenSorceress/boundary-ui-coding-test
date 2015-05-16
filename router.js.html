@@ -218,15 +218,15 @@
 			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette');
 
 /**
- * @version 1.0.0
- * @description Handle routes to show the active vs complete todo items.
- * @module router
- * @requires module:backbone.marionette
- * @link {http://marionettejs.com/}
- */
+* @version 1.0.0
+* @description Handle routes to show the active vs complete todo items.
+* @module router
+* @requires module:requires/backbone.marionette/js/backbone.marionette.js
+* @link {http://marionettejs.com/}
+*/
 module.exports = Router = Marionette.AppRouter.extend({
 
-    /** approutes */
+    /** app routes */
     appRoutes: {
         '*filter': 'filterItems'
     }

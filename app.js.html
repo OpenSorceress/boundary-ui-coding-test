@@ -216,6 +216,7 @@
 	<article>
 		<pre
 			class="sunlight-highlight-javascript linenums">var Marionette = require('backbone.marionette'),
+    Backbone = require('backbone'),
     Controller = require('./controller'),
     Router = require('./router'),
     LayoutView = require('./views/layout'),
@@ -232,8 +233,10 @@
  * @requires module:router
  * @requires module:views/layout
  * @requires module:collections/todos
- * @requires module:backbone.marionette
+ * @requires module:requires/backbone/js/backbone.js
+ * @requires module:requires/backbone.marionette/js/backbone.marionette.js
  * @link {http://marionettejs.com/}
+ * @link {http://backbonejs.org/}
  */
 module.exports = App = function App() {};
 
