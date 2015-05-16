@@ -232,9 +232,10 @@
 module.exports = App = function App() {};
 
 App.prototype.start = function(){
+
     App.core = Marionette.Application.extend({
         setRootLayout: function () {
-            this.root = new TodoMVC.Layout.Root();
+            this.root = new LayoutView();
         }
     });
 
