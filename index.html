@@ -263,6 +263,13 @@
 <ul>
 <li>Add some unit tests using grunt and any test framework you like.</li>
 </ul>
+<h3>Build</h3>
+<p>For development:</p>
+<pre><code>$ grunt init:dev &amp;&amp; grunt build:dev  </code></pre>
+<p>For production:</p>
+<pre><code>$ grunt build:prod</code></pre>
+<p>With watch:</p>
+<pre><code>$ grunt watch</code></pre>
 <h3>Front-end Tests/TDD:</h3>
 <p>Requires PhantomJS to be installed globally:</p>
 <pre><code>$ sudo npm install -g phantomjs</code></pre>
@@ -271,11 +278,13 @@
 <p>To run tests once:</p>
 <pre><code>$ grunt test:client</code></pre>
 <h3>Added</h3>
-<p>The test has been considerably refactored to help me get reaquented with Backbone, write better tests and build
+<p>I apologize but I changed the application folder structure from the original Backbone TodoMVC Marionette app.</p>
+<p>This was to help me get reacquainted with Backbone, write better tests and build
 an asset pipeline with browserify.</p>
-<p>It's just easier to see whats going on when the views, controller, route, model, collection and app are in separate files.</p>
-<p>Since I had never used browserify with Backbone before I used information from this <a href="http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/">blog article</a> for reference.</p>
-<p>Because the code is considerably changed and I didn't want it to be to painful to understand, I tried to make things eaiser
+<p>It's just easier to see what's going on when the views, controller, route, model, collection and app are in separate files.</p>
+<p>The last time I touched Backbone Marionette was three years ago.</p>
+<p>Since I had never used browserify with Backbone let alone Backbone Marionette before I used information from this <a href="http://kroltech.com/2013/12/29/boilerplate-web-app-using-backbone-js-expressjs-node-js-mongodb/">blog article</a> for reference.</p>
+<p>Because the code is considerably changed and I didn't want it to be to painful to understand, I tried to make things easier
 by using jsdoc and creating some API documentation.  Although the original TodoMVC code is still in the commit history
 of this repo I doubt that's going to be much help. :)</p>
 <h3>API Documentation</h3>
@@ -299,7 +308,9 @@ of this repo I doubt that's going to be much help. :)</p>
 <li>Refactored using CommonJS module pattern</li>
 <li>jsdoc</li>
 <li>ES6 with babeljs</li>
-</ul></article>
+</ul>
+<h3>View App</h3>
+<p>Open <code>public\index.html</code> file in browser.</p></article>
     </section>
 
 
