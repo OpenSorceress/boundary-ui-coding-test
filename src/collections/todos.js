@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
     LocalStorage = require('localstorage'),
-    TodoModel = require('../models/todo');
+    Todo = require('../models/todo');
 
 /**
  * TodoListCollection
@@ -11,10 +11,10 @@ var Backbone = require('backbone'),
  * @link {http://documentup.com/jeromegn/backbone.localStorage}
  * @requires module:models/todo
  */
-module.exports = Backbone.Collection.extend({
+module.exports = TodoList = Backbone.Collection.extend({
 
     /** Todo Model */
-    model: TodoModel,
+    model: Todo,
 
     /** LocalStorage */
     localStorage: new LocalStorage('todos-backbone-marionette'),

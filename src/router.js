@@ -6,10 +6,11 @@ var Marionette = require('marionette');
 * @module router
 * @link {http://marionettejs.com/}
 */
-module.exports = Marionette.AppRouter.extend({
+module.exports = Router = Marionette.AppRouter.extend({
 
     /** app routes */
     appRoutes: {
         '*filter': 'filterItems'
     }
+
 });

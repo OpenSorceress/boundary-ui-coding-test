@@ -40,10 +40,6 @@
 						</li>
 						
 						<li>
-							<a href="module-main.html">main</a>
-						</li>
-						
-						<li>
 							<a href="todo.html">models/todo</a>
 						</li>
 						
@@ -83,10 +79,6 @@
 						
 						<li>
 							<a href="global.html#_isCompleted">_isCompleted</a>
-						</li>
-						
-						<li>
-							<a href="global.html#App">App</a>
 						</li>
 						
 						<li>
@@ -223,12 +215,13 @@
 * @module router
 * @link {http://marionettejs.com/}
 */
-module.exports = Marionette.AppRouter.extend({
+module.exports = Router = Marionette.AppRouter.extend({
 
     /** app routes */
     appRoutes: {
         '*filter': 'filterItems'
     }
+
 });</pre>
 	</article>
 </section>

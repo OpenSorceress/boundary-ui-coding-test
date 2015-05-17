@@ -12,7 +12,7 @@ var Marionette = require('marionette'),
  * @requires module:views/item
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.CompositeView.extend({
+module.exports = ListView = Marionette.CompositeView.extend({
 
     /** template */
     template: '#template-todoListCompositeView',

@@ -3,7 +3,7 @@ var Marionette = require('marionette'),
     Backbone = require('backbone'),
     Controller = require('./controller'),
     Router = require('./router'),
-    LayoutView = require('./views/layout'),
+    RootView = require('./views/root'),
     TodosCollection = require('./collections/todos');
 
 /**
@@ -20,18 +20,12 @@ var Marionette = require('marionette'),
  * @link {http://marionettejs.com/}
  * @link {http://backbonejs.org/}
  */
-var App = function App() {};
 
-/**
- * @desc application bootstrap functions
- */
+module.exports = App = function App() {};
+
 App.prototype.start = function(){
 
-    App.core = Marionette.Application.extend({
-        setRootLayout: function () {
-            this.root = LayoutView;
-        }
-    });
+    App.core = new Marionette.Application();
 
     var filterState = new Backbone.Model({
         filter: 'all'
@@ -39,6 +33,10 @@ App.prototype.start = function(){
 
     App.core.reqres.setHandler('filterState', function () {
         return filterState;
+    });
+
+    App.core.on('before:start', function () {
+        App.core.rootView = new RootView();
     });
 
     App.core.on("initialize:before", function (options) {
@@ -55,10 +53,6 @@ App.prototype.start = function(){
                 App.core.vent.trigger('app:start');
             }
         });
-    });
-
-    App.core.on('before:start', function () {
-        App.core.setRootLayout();
     });
 
     App.core.vent.bind('app:start', function(options){
@@ -81,12 +75,10 @@ App.prototype.start = function(){
     App.core.start();
 };
 
-module.exports = App;
-
-},{"./collections/todos":2,"./controller":3,"./router":6,"./views/layout":10,"backbone":"backbone","marionette":"marionette"}],2:[function(require,module,exports){
+},{"./collections/todos":2,"./controller":3,"./router":6,"./views/root":11,"backbone":"backbone","marionette":"marionette"}],2:[function(require,module,exports){
 var Backbone = require('backbone'),
     LocalStorage = require('localstorage'),
-    TodoModel = require('../models/todo');
+    Todo = require('../models/todo');
 
 /**
  * TodoListCollection
@@ -97,10 +89,10 @@ var Backbone = require('backbone'),
  * @link {http://documentup.com/jeromegn/backbone.localStorage}
  * @requires module:models/todo
  */
-module.exports = Backbone.Collection.extend({
+module.exports = TodoList = Backbone.Collection.extend({
 
     /** Todo Model */
-    model: TodoModel,
+    model: Todo,
 
     /** LocalStorage */
     localStorage: new LocalStorage('todos-backbone-marionette'),
@@ -140,6 +132,7 @@ var Marionette = require('marionette'),
     App = require('./app'),
     HeaderView = require('./views/header'),
     FooterView = require('./views/footer'),
+    TodoList = require('./collections/todos'),
     ListView = require('./views/list');
 
 /**
@@ -153,13 +146,13 @@ var Marionette = require('marionette'),
  * @requires module:views/list
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.Controller.extend({
+module.exports = Controller = Marionette.Controller.extend({
 
     /**
      * @func initialize
      */
     initialize: function () {
-        this.todoList = new App.Todos.TodoList();
+        this.todoList = new TodoList();
     },
 
     /**
@@ -225,19 +218,9 @@ module.exports = Marionette.Controller.extend({
     }
 });
 
-},{"./app":1,"./views/footer":7,"./views/header":8,"./views/list":11,"marionette":"marionette"}],4:[function(require,module,exports){
-/** @global */
+},{"./app":1,"./collections/todos":2,"./views/footer":7,"./views/header":8,"./views/list":10,"marionette":"marionette"}],4:[function(require,module,exports){
 var App = require('./app');
-
-/**
- * TodoMVC App
- * @desc Starts App requires the module {@link module:app}
- * @module main
- * @requires module:app
- * @type {App|exports|module.exports}
- */
 var TodoMVC = new App();
-
 TodoMVC.start();
 },{"./app":1}],5:[function(require,module,exports){
 var Backbone = require('backbone');
@@ -248,7 +231,7 @@ var Backbone = require('backbone');
 * @link {http://backbonejs.org/}
 * @module models/todo
 */
-module.exports = Backbone.Model.extend({
+module.exports = Todo = Backbone.Model.extend({
 
     /** defaults */
     defaults: {
@@ -309,12 +292,13 @@ var Marionette = require('marionette');
 * @module router
 * @link {http://marionettejs.com/}
 */
-module.exports = Marionette.AppRouter.extend({
+module.exports = Router = Marionette.AppRouter.extend({
 
     /** app routes */
     appRoutes: {
         '*filter': 'filterItems'
     }
+
 });
 },{"marionette":"marionette"}],7:[function(require,module,exports){
 var Marionette = require('marionette'),
@@ -327,7 +311,7 @@ var Marionette = require('marionette'),
 * @requires module:app
 * @link {http://marionettejs.com/}
 */
-module.exports = Marionette.ItemView.extend({
+module.exports = FooterView = Marionette.ItemView.extend({
 
     /** template */
     template: '#template-footer',
@@ -418,7 +402,7 @@ var Marionette = require('marionette');
  * @module views/header
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.ItemView.extend({
+module.exports = HeaderView = Marionette.ItemView.extend({
     template: '#template-header',
 
     /**
@@ -479,7 +463,7 @@ var Marionette = require('marionette');
  * @module views/item
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.ItemView.extend({
+module.exports = ItemView = Marionette.ItemView.extend({
 
     /** tag name */
     tagName: 'li',
@@ -579,27 +563,6 @@ module.exports = Marionette.ItemView.extend({
     }
 });
 },{"marionette":"marionette"}],10:[function(require,module,exports){
-var Marionette = require('marionette');
-
-/**
- * @version 1.0.0
- * @description Layout View - Root layout view.
- * @module views/layout
- * @link {http://marionettejs.com/}
- */
-module.exports = Marionette.LayoutView.extend({
-
-    /** el */
-    el: '#todoapp',
-
-    /** regions */
-    regions: {
-        header: '#header',
-        main: '#main',
-        footer: '#footer'
-    }
-});
-},{"marionette":"marionette"}],11:[function(require,module,exports){
 var Marionette = require('marionette'),
     App = require('../app'),
     ItemView = require('./item');
@@ -614,7 +577,7 @@ var Marionette = require('marionette'),
  * @requires module:views/item
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.CompositeView.extend({
+module.exports = ListView = Marionette.CompositeView.extend({
 
     /** template */
     template: '#template-todoListCompositeView',
@@ -695,4 +658,25 @@ module.exports = Marionette.CompositeView.extend({
     }
 });
 
-},{"../app":1,"./item":9,"marionette":"marionette"}]},{},[4]);
+},{"../app":1,"./item":9,"marionette":"marionette"}],11:[function(require,module,exports){
+var Marionette = require('marionette');
+
+/**
+ * @version 1.0.0
+ * @description Layout View - Root layout view.
+ * @module views/layout
+ * @link {http://marionettejs.com/}
+ */
+module.exports = RootView = Marionette.LayoutView.extend({
+
+    /** el */
+    el: '#todoapp',
+
+    /** regions */
+    regions: {
+        header: '#header',
+        main: '#main',
+        footer: '#footer'
+    }
+});
+},{"marionette":"marionette"}]},{},[4]);

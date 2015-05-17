@@ -7,7 +7,7 @@ var Marionette = require('marionette');
  * @module views/item
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.ItemView.extend({
+module.exports = ItemView = Marionette.ItemView.extend({
 
     /** tag name */
     tagName: 'li',

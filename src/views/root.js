@@ -6,7 +6,7 @@ var Marionette = require('marionette');
  * @module views/layout
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.LayoutView.extend({
+module.exports = RootView = Marionette.LayoutView.extend({
 
     /** el */
     el: '#todoapp',

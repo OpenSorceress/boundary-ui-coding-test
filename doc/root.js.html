@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>DocStrap Module: main</title>
+	<title>DocStrap Source: views/root.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -37,10 +37,6 @@
 						
 						<li>
 							<a href="module-controller.html">controller</a>
-						</li>
-						
-						<li>
-							<a href="module-main.html">main</a>
 						</li>
 						
 						<li>
@@ -83,10 +79,6 @@
 						
 						<li>
 							<a href="global.html#_isCompleted">_isCompleted</a>
-						</li>
-						
-						<li>
-							<a href="global.html#App">App</a>
 						</li>
 						
 						<li>
@@ -204,103 +196,40 @@
 	<div class="row-fluid">
 
 		
-		<div class="span8">
-			
+			<div class="span12">
+				
 				<div id="main">
 					
 
 
-	<h1 class="page-title">Module: main</h1>
+		<h1 class="page-title">Source: views/root.js</h1>
+    
 <section>
+	<article>
+		<pre
+			class="sunlight-highlight-javascript linenums">var Marionette = require('marionette');
 
-<header>
-    <h2>
-    main
-    </h2>
-    
-</header>
+/**
+ * @version 1.0.0
+ * @description Layout View - Root layout view.
+ * @module views/layout
+ * @link {http://marionettejs.com/}
+ */
+module.exports = RootView = Marionette.LayoutView.extend({
 
-<article>
-    <div class="container-overview">
-    
+    /** el */
+    el: '#todoapp',
 
-    
-        
-            <div class="description"><p>Starts App requires the module <a href="module-app.html">module:app</a></p></div>
-        
-
-        
-<dl class="details">
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="main.js.html">main.js</a>,
-				 <a href="main.js.html#sunlight-1-line-4">line 4</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Requires</h3>
-
-        <ul>
-            <li><a href="module-app.html">module:app</a></li>
-        </ul>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    /** regions */
+    regions: {
+        header: '#header',
+        main: '#main',
+        footer: '#footer'
+    }
+});</pre>
+	</article>
 </section>
+
 
 
 
@@ -324,10 +253,6 @@
 				</footer>
 			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
 			
 			<br clear="both">
 		</div>

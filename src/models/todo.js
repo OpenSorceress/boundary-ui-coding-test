@@ -6,7 +6,7 @@ var Backbone = require('backbone');
 * @link {http://backbonejs.org/}
 * @module models/todo
 */
-module.exports = Backbone.Model.extend({
+module.exports = Todo = Backbone.Model.extend({
 
     /** defaults */
     defaults: {

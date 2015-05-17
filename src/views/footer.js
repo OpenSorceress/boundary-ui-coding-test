@@ -8,7 +8,7 @@ var Marionette = require('marionette'),
 * @requires module:app
 * @link {http://marionettejs.com/}
 */
-module.exports = Marionette.ItemView.extend({
+module.exports = FooterView = Marionette.ItemView.extend({
 
     /** template */
     template: '#template-footer',

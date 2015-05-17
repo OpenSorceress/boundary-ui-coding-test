@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             transpile: {
                 files: {
                     'build/<%= pkg.name %>.css': [
-                        'styles/less/main.less'
+                        'styles/**/*.less'
                     ]
                 }
             }

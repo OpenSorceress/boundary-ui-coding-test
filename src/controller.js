@@ -2,6 +2,7 @@ var Marionette = require('marionette'),
     App = require('./app'),
     HeaderView = require('./views/header'),
     FooterView = require('./views/footer'),
+    TodoList = require('./collections/todos'),
     ListView = require('./views/list');
 
 /**
@@ -15,13 +16,13 @@ var Marionette = require('marionette'),
  * @requires module:views/list
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.Controller.extend({
+module.exports = Controller = Marionette.Controller.extend({
 
     /**
      * @func initialize
      */
     initialize: function () {
-        this.todoList = new App.Todos.TodoList();
+        this.todoList = new TodoList();
     },
 
     /**

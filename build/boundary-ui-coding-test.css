@@ -1,6 +1,5 @@
-@import "../../node_modules/todomvc-app-css/index.css";
-@import "../../node_modules/todomvc-common/base.css";
 #todoapp.filter-active #todo-list .completed,
 #todoapp.filter-completed #todo-list .active {
+  color: rgba(0, 0, 17, 0.45);
   display: none;
 }

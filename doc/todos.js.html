@@ -40,10 +40,6 @@
 						</li>
 						
 						<li>
-							<a href="module-main.html">main</a>
-						</li>
-						
-						<li>
 							<a href="todo.html">models/todo</a>
 						</li>
 						
@@ -83,10 +79,6 @@
 						
 						<li>
 							<a href="global.html#_isCompleted">_isCompleted</a>
-						</li>
-						
-						<li>
-							<a href="global.html#App">App</a>
 						</li>
 						
 						<li>
@@ -217,7 +209,7 @@
 		<pre
 			class="sunlight-highlight-javascript linenums">var Backbone = require('backbone'),
     LocalStorage = require('localstorage'),
-    TodoModel = require('../models/todo');
+    Todo = require('../models/todo');
 
 /**
  * TodoListCollection
@@ -228,10 +220,10 @@
  * @link {http://documentup.com/jeromegn/backbone.localStorage}
  * @requires module:models/todo
  */
-module.exports = Backbone.Collection.extend({
+module.exports = TodoList = Backbone.Collection.extend({
 
     /** Todo Model */
-    model: TodoModel,
+    model: Todo,
 
     /** LocalStorage */
     localStorage: new LocalStorage('todos-backbone-marionette'),

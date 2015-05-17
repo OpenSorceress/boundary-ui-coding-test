@@ -2,7 +2,7 @@ var Marionette = require('marionette'),
     Backbone = require('backbone'),
     Controller = require('./controller'),
     Router = require('./router'),
-    LayoutView = require('./views/layout'),
+    RootView = require('./views/root'),
     TodosCollection = require('./collections/todos');
 
 /**
@@ -19,18 +19,12 @@ var Marionette = require('marionette'),
  * @link {http://marionettejs.com/}
  * @link {http://backbonejs.org/}
  */
-var App = function App() {};
 
-/**
- * @desc application bootstrap functions
- */
+module.exports = App = function App() {};
+
 App.prototype.start = function(){
 
-    App.core = Marionette.Application.extend({
-        setRootLayout: function () {
-            this.root = LayoutView;
-        }
-    });
+    App.core = new Marionette.Application();
 
     var filterState = new Backbone.Model({
         filter: 'all'
@@ -38,6 +32,10 @@ App.prototype.start = function(){
 
     App.core.reqres.setHandler('filterState', function () {
         return filterState;
+    });
+
+    App.core.on('before:start', function () {
+        App.core.rootView = new RootView();
     });
 
     App.core.on("initialize:before", function (options) {
@@ -54,10 +52,6 @@ App.prototype.start = function(){
                 App.core.vent.trigger('app:start');
             }
         });
-    });
-
-    App.core.on('before:start', function () {
-        App.core.setRootLayout();
     });
 
     App.core.vent.bind('app:start', function(options){
@@ -79,5 +73,3 @@ App.prototype.start = function(){
 
     App.core.start();
 };
-
-module.exports = App;

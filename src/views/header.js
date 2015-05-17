@@ -6,7 +6,7 @@ var Marionette = require('marionette');
  * @module views/header
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.ItemView.extend({
+module.exports = HeaderView = Marionette.ItemView.extend({
     template: '#template-header',
 
     /**

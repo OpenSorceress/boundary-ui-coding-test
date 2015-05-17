@@ -40,10 +40,6 @@
 						</li>
 						
 						<li>
-							<a href="module-main.html">main</a>
-						</li>
-						
-						<li>
 							<a href="todo.html">models/todo</a>
 						</li>
 						
@@ -83,10 +79,6 @@
 						
 						<li>
 							<a href="global.html#_isCompleted">_isCompleted</a>
-						</li>
-						
-						<li>
-							<a href="global.html#App">App</a>
 						</li>
 						
 						<li>
@@ -219,6 +211,7 @@
     App = require('./app'),
     HeaderView = require('./views/header'),
     FooterView = require('./views/footer'),
+    TodoList = require('./collections/todos'),
     ListView = require('./views/list');
 
 /**
@@ -232,13 +225,13 @@
  * @requires module:views/list
  * @link {http://marionettejs.com/}
  */
-module.exports = Marionette.Controller.extend({
+module.exports = Controller = Marionette.Controller.extend({
 
     /**
      * @func initialize
      */
     initialize: function () {
-        this.todoList = new App.Todos.TodoList();
+        this.todoList = new TodoList();
     },
 
     /**
