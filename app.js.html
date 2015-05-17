@@ -211,7 +211,7 @@
     Backbone = require('backbone'),
     Controller = require('./controller'),
     Router = require('./router'),
-    LayoutView = require('./views/layout'),
+    RootView = require('./views/root'),
     TodosCollection = require('./collections/todos');
 
 /**
@@ -244,7 +244,7 @@ App.prototype.start = function(){
     });
 
     App.core.on('before:start', function () {
-        App.core.rootView = new LayoutView();
+        App.core.rootView = new RootView();
     });
 
     App.core.on("initialize:before", function (options) {
